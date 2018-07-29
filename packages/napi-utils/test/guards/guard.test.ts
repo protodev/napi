@@ -1,0 +1,3 @@
+describe('Guards', () => {
+    require('./guardEmptyArray');
+});

@@ -1,0 +1,13 @@
+0 silly argv { _: [ 'bootstrap' ],
+0 silly argv   progress: true,
+0 silly argv   sort: true,
+0 silly argv   ci: false,
+0 silly argv   private: true,
+0 silly argv   loglevel: 'info',
+0 silly argv   lernaVersion: '3.0.0-rc.0',
+0 silly argv   '$0': '/usr/local/bin/lerna' }
+1 info version 3.0.0-rc.0
+2 verbose rootPath /Users/jdetri/Development/Prototype/napi
+3 error JSONError: Unexpected token } in JSON at position 267 while parsing near '... "test": "mocha",  },  "author": "Prot...' in packages/napi-client/package.json
+3 error     at module.exports (/usr/local/lib/node_modules/lerna/node_modules/parse-json/index.js:26:19)
+3 error     at parse (/usr/local/lib/node_modules/lerna/node_modules/load-json-file/index.js:8:29)

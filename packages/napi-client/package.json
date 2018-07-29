@@ -1,0 +1,14 @@
+{
+  "name": "@napi/client",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -Rf dist && rm -Rf node_modules",
+    "prebuild": "rm -Rf dist",
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "license": "UNLICENSED"
+}

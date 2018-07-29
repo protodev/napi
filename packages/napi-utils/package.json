@@ -1,0 +1,20 @@
+{
+  "name": "@napi/utils",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -Rf dist && rm -Rf node_modules",
+    "prebuild": "rm -Rf dist",
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  }
+}

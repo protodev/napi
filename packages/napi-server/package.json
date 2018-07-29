@@ -1,0 +1,31 @@
+{
+  "name": "@napi/server",
+  "version": "0.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -Rf dist && rm -Rf node_modules",
+    "prebuild": "rm -Rf dist",
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "license": "UNLICENSED",
+  "peerDependencies": {
+    "inversify": "4.13.0",
+    "reflect-metadata": "0.1.12"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.1.4",
+    "@types/koa": "^2.0.46",
+    "@types/koa-router": "^7.0.31",
+    "@types/mocha": "^5.2.5",
+    "chai": "^4.1.2",
+    "mocha": "^5.2.0"
+  },
+  "dependencies": {
+    "koa": "^2.5.2",
+    "koa-router": "^7.4.0",
+    "@napi/utils": "^0.0.0"
+  }
+}

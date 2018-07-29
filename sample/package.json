@@ -1,0 +1,29 @@
+{
+  "name": "@napi/sample",
+  "version": "0.0.0",
+  "description": "Sample NAPI Service",
+  "main": "dist/index.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "mocha",
+    "start": "ts-node ./src/index.ts",
+    "prebuild": "rm -Rf dist",
+    "build": "npm run link && tsc",
+    "prelink": "cd ./node_modules && rm -rf ./napi-server && rm -rf napi-utils",
+    "link": "cd ./node_modules && ln -sf ../../packages/napi-server && ln -sf ../../packages/napi-utils"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "dependencies": {
+    "inversify": "^4.13.0",
+    "nconf": "^0.10.0",
+    "reflect-metadata": "^0.1.12"
+  },
+  "devDependencies": {
+    "@types/node": "^10.5.4",
+    "ts-node": "^7.0.0",
+    "typescript": "^2.9.2"
+  }
+}

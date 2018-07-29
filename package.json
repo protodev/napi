@@ -1,0 +1,30 @@
+{
+  "name": "napi",
+  "private": true,
+  "devDependencies": {
+    "@types/node": "^10.5.4",
+    "lerna": "^3.0.0-rc.0",
+    "typescript": "^2.9.2"
+  },
+  "version": "0.0.0",
+  "main": "dist/index.js",
+  "scripts": {
+    "clean": "rm -r ./node_modules && lerna run clean",
+    "test": "lerna run test",
+    "build": "lerna bootstrap --hoist && lerna run build"
+  },
+  "author": {
+    "name": "Protodev Technology Group LLC.",
+    "email": "napi@protodev.com",
+    "url": "http://www.protodev.com/napi"
+  },
+  "license": "UNLICENSED",
+  "description": "",
+  "dependencies": {
+    "inversify": "4.13.0",
+    "node": "^10.7.0",
+    "reflect-metadata": "0.1.12",
+    "source-map-support": "^0.5.6",
+    "ts-node": "^7.0.0"
+  }
+}
