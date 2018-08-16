@@ -8,11 +8,13 @@ import {
     IRouteManager,
     IRouteManagerConfiguration,
     RouteManager,
-    RouteManagerConstants
+    RouteManagerConstants,
+    IController,
+    ControllerConstants
 } from 'napi-server';
+import { SampleController } from './controllers/sampleController';
 
 const container = new Container();
-
 container.bind<IServerConfiguration>(ServerConstants.ServerConfiguration).toConstantValue({
     name: 'napi-sample',
     version: '0.0.0',
@@ -20,15 +22,9 @@ container.bind<IServerConfiguration>(ServerConstants.ServerConfiguration).toCons
 });
 
 container.bind<IRouteManagerConfiguration>(RouteManagerConstants.RouteManagerConfiguration).toConstantValue({});
-
-
-
-container.bind<IServerInstance>(ServerConstants.Server)
-    .to(Server)
-    .inSingletonScope();
-
 container.bind<RouteManager>(RouteManagerConstants.RouteManager)
     .to(RouteManager)
     .inSingletonScope();
+container.bind<IController>(ControllerConstants.Controller).to(SampleController);
 
-container.get<IServerInstance>(ServerConstants.Server).start();
+new Server(container).start();
