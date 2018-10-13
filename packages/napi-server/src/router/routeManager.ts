@@ -1,9 +1,10 @@
 import * as Router from 'koa-router';
+import { HttpVerb } from '@napi/utils';
+import { injectable, inject } from 'inversify';
 import { IRouteManager } from '../abstraction/router/iRouteManager';
 import { IRouteManagerConfiguration } from '../abstraction/router/iRouteManagerConfiguration';
-import { injectable, inject } from 'inversify';
 import { RouteManagerConstants } from '../abstraction/constants/routeManagerConstants';
-import { HttpVerb } from '../../../napi-utils/dist';
+import { ExceptionHandler } from '../middleware/exceptionHandler';
 
 @injectable()
 export class RouteManager implements IRouteManager {
@@ -18,7 +19,7 @@ export class RouteManager implements IRouteManager {
 
     addPublicRoute(verb?: HttpVerb, paths?: string[], ...middlewares: Router.IMiddleware[]): void {
         paths.forEach((path) => {
-            console.log('Binding route:', path);
+            console.log('BindingRoute:', verb, path);
             this._koaRouter[verb.toLowerCase()](path, ...middlewares);
         })
     }

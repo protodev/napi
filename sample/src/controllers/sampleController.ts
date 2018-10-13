@@ -1,23 +1,37 @@
-import { controller, route, IController } from 'napi-server';
+import { controller, route, IController, get, post, put, del, options } from 'napi-server';
 import { SampleResource } from '../resources/sampleResponse';
 import { injectable } from '../../node_modules/inversify';
+import { HttpVerb } from 'napi-utils';
 
 @injectable()
 @controller('/sample')
 export class SampleController implements IController {
-
-    @route('GET', '/public')
-    async publicRoute(context) {
-        context.body = {
-            prop1: 'property 1',
-            prop2: 'property 2'
-        }
+    static Public_Response = {
+        public: 'response'
     }
 
-    @route('GET', '/public2')
-    async public2Route(context) {
-        context.body = {
-            foo: 'bar'
-        }
+    @get('/public')
+    async publicRoute(context) {
+        context.body = SampleController.Public_Response
+    }
+
+    @post('/public')
+    async postPublicRoute(context) {
+        context.body = SampleController.Public_Response
+    }
+
+    @put('/public')
+    async putPublicRoute(context) {
+        context.body = SampleController.Public_Response
+    }
+
+    @del('/public')
+    async deletePublicRoute(context) {
+        context.body = SampleController.Public_Response
+    }
+
+    @options('/public')
+    async optionsPublicRoute(context) {
+        context.body = SampleController.Public_Response
     }
 }

@@ -1,5 +1,4 @@
 import { IMiddleware } from 'koa-router';
-import { IRouteManagerConfiguration } from './iRouteManagerConfiguration';
 import { HttpVerb } from '@napi/utils';
 
 export interface IRouteManager {

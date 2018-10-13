@@ -8,7 +8,7 @@ import { RouteManagerConstants } from "./abstraction/constants/routeManagerConst
 import { RouteManager } from "./router/routeManager";
 import { controller } from "./decorators/controller";
 import { service } from "./decorators/service";
-import { route } from "./decorators/route";
+import { route, get, post, put, patch, del, options } from "./decorators/route";
 import { IController } from './abstraction/iController';
 import { ControllerConstants } from "./abstraction/constants/controllerConstants";
 
@@ -21,7 +21,13 @@ const Constants = {
 const Decorators = {
     controller,
     service,
-    route
+    route,
+    get,
+    post,
+    put,
+    patch,
+    del,
+    options
 }
 
 export {
@@ -40,5 +46,11 @@ export {
     Decorators,
     controller,
     service,
-    route
+    route,
+    get,
+    post,
+    put,
+    patch,
+    del,
+    options
 }
