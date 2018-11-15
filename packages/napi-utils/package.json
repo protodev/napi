@@ -11,6 +11,9 @@
     "test": "mocha"
   },
   "license": "UNLICENSED",
+  "dependencies": {
+    "@napi/common": "0.0.0"
+  },
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/mocha": "^5.2.5",

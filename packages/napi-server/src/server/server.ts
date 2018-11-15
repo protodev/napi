@@ -13,6 +13,7 @@ import { controller } from '../decorators/controller';
 import { IController } from '../abstraction/iController';
 import { MetaData } from '../abstraction/constants/metaData';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
+import { RequestContextHandler } from '../middleware/requestContextHandler';
 
 export class Server implements IServerInstance {
     private _container: Container;
@@ -47,6 +48,7 @@ export class Server implements IServerInstance {
         const routes = this._routeManager.buildRoutes();
         
         this._koa.use(new ExceptionHandler().middleware);
+        this._koa.use(new RequestContextHandler(this._container).middleware);
         this._koa.use(routes);
         this._koa.listen(this._serverConfiguration.port);
     }
@@ -57,7 +59,8 @@ export class Server implements IServerInstance {
         controllers.forEach((controller: IController) => {
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller.constructor);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller.constructor);
-            
+            let paramMetadata = Reflect.getOwnMetadata(MetaData.queryParam, controller.constructor);
+
             methodMetadata.forEach((metadata) => {
                 this._routeManager.addPublicRoute(
                     metadata.method,

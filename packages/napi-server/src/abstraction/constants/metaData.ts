@@ -1,4 +1,5 @@
 export const MetaData = {
     controller: "_controller",
-    route: "_route"
+    route: "_route",
+    queryParam: "_queryParam"
 }

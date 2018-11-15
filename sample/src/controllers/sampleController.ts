@@ -1,4 +1,7 @@
-import { controller, route, IController, get, post, put, del, options } from 'napi-server';
+import {
+    controller, route, IController,
+    get, post, put, del, options, queryParam
+} from 'napi-server';
 import { SampleResource } from '../resources/sampleResponse';
 import { injectable } from '../../node_modules/inversify';
 import { HttpVerb } from 'napi-utils';
@@ -33,5 +36,10 @@ export class SampleController implements IController {
     @options('/public')
     async optionsPublicRoute(context) {
         context.body = SampleController.Public_Response
+    }
+
+    @get('/parameter-test')
+    async parameterTest(@queryParam('sample') sample: string) {
+        console.log(sample);
     }
 }
