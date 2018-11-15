@@ -39,9 +39,13 @@ export class SampleController implements IController {
     }
 
     @get('/parameter-test')
-    async parameterTest(@queryParam('sample') sample: string) {
+    async parameterTest(
+        @queryParam('sample') sample: string,
+        @queryParam('sample2') sample2: string) {
+
         return {
-            sample
+            sample,
+            sample2
         }
     }
 }

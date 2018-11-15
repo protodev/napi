@@ -56,12 +56,12 @@ export class RequestContextHandler implements IMiddleware {
 
             const routeArgs = [];
             
-            paramMetadata.forEach(paramDecorator => {
+            paramMetadata.reverse().forEach(paramDecorator => {
                 const paramMatch = requestContext.params.find(param => {
                     return paramDecorator.name === param.name;
                 });
 
-                routeArgs.push(paramMatch.value);
+                paramMatch && paramMatch.value ? routeArgs.push(paramMatch.value) : null;
             });
 
             context.body = await routeHandler.target[routeHandler.key](...routeArgs);
