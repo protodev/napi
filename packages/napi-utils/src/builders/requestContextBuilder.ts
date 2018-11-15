@@ -6,6 +6,7 @@ export class RequestContextBuilder {
     constructor() {
         this._requestContext = {
             path: null,
+            method: null,
             host: null,
             port: null,
             params: [],
@@ -49,6 +50,11 @@ export class RequestContextBuilder {
         this._requestContext.body = body;
         return this;
     }
+
+    setMethod(method: string) {
+        this._requestContext.method = method;
+        return this;
+    };
 
     build(): IRequestContext {
         return this._requestContext;

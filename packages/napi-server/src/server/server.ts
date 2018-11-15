@@ -46,7 +46,7 @@ export class Server implements IServerInstance {
     start() {
         this.registerControllers();
         const routes = this._routeManager.buildRoutes();
-        
+
         this._koa.use(new ExceptionHandler().middleware);
         this._koa.use(new RequestContextHandler(this._container).middleware);
         this._koa.use(routes);
@@ -59,13 +59,12 @@ export class Server implements IServerInstance {
         controllers.forEach((controller: IController) => {
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller.constructor);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller.constructor);
-            let paramMetadata = Reflect.getOwnMetadata(MetaData.queryParam, controller.constructor);
 
             methodMetadata.forEach((metadata) => {
-                this._routeManager.addPublicRoute(
-                    metadata.method,
-                    [`${controllerMetadata.path}${metadata.path}`],
-                    metadata.target[metadata.key]);
+                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler.`)
+                this._container.bind(`${controllerMetadata.path}${metadata.path}`)
+                    .toConstantValue(controller.constructor)
+                    .whenTargetNamed(`${metadata.method}`);
             });
         });
     }

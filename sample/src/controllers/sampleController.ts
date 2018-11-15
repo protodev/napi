@@ -14,32 +14,34 @@ export class SampleController implements IController {
     }
 
     @get('/public')
-    async publicRoute(context) {
-        context.body = SampleController.Public_Response
+    async publicRoute() {
+        return SampleController.Public_Response
     }
 
     @post('/public')
-    async postPublicRoute(context) {
-        context.body = SampleController.Public_Response
+    async postPublicRoute() {
+        return SampleController.Public_Response
     }
 
     @put('/public')
     async putPublicRoute(context) {
-        context.body = SampleController.Public_Response
+        return SampleController.Public_Response
     }
 
     @del('/public')
     async deletePublicRoute(context) {
-        context.body = SampleController.Public_Response
+        return SampleController.Public_Response
     }
 
     @options('/public')
     async optionsPublicRoute(context) {
-        context.body = SampleController.Public_Response
+        return SampleController.Public_Response
     }
 
     @get('/parameter-test')
     async parameterTest(@queryParam('sample') sample: string) {
-        console.log(sample);
+        return {
+            sample
+        }
     }
 }

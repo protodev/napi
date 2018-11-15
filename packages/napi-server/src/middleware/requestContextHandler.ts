@@ -3,6 +3,7 @@ import { RequestContextBuilder } from '@napi/utils';
 import { IMiddleware } from "../abstraction/router/iMiddleware";
 import { Context } from "koa";
 import { Container } from 'inversify';
+import { MetaData } from '../abstraction/constants/metaData';
 
 export class RequestContextHandler implements IMiddleware {
 
@@ -12,7 +13,7 @@ export class RequestContextHandler implements IMiddleware {
         this._container = container;
     }
 
-    async middleware(context: Context, next: Function) {
+    middleware = async (context: Context, next: Function): Promise<void> => {
         const headers: IHeader[] = [];
 
         Object.getOwnPropertyNames(context.request.headers)
@@ -26,14 +27,25 @@ export class RequestContextHandler implements IMiddleware {
         const requestContext = new RequestContextBuilder()
             .setPath(context.request.path)
             .setHeaders(headers)
+            .setMethod(context.method)
             .build();
 
         try {
             /*
-             * TODO: This is where we find and call the appropriate controller from
-             * inversify and handle the request.
+             * This is where we find and call the appropriate controller from inversify and handle the request.
+             * And create a childContainer so that we can bind request scoped items.
              */
-            await next(requestContext);
+            const controller = this._container.getNamed(requestContext.path, requestContext.method);
+            
+            const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller);
+            const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller);
+            let paramMetadata = Reflect.getOwnMetadata(MetaData.queryParam, controller);
+            
+            const method = methodMetadata.find((e) => {
+                return `${controllerMetadata.path}${e.path}` === requestContext.path
+            });
+
+            context.body = await method.target[method.key]();
         } catch (e) {
             console.log(e);
         }
