@@ -1,7 +1,7 @@
-import { IHeader } from '@napi/common';
+import { IHeader, IQueryParam } from '@napi/common';
 import { RequestContextBuilder } from '@napi/utils';
-import { IMiddleware } from "../abstraction/router/iMiddleware";
-import { Context } from "koa";
+import { IMiddleware } from '../abstraction/router/iMiddleware';
+import { Context } from 'koa';
 import { Container } from 'inversify';
 import { MetaData } from '../abstraction/constants/metaData';
 
@@ -15,7 +15,7 @@ export class RequestContextHandler implements IMiddleware {
 
     middleware = async (context: Context, next: Function): Promise<void> => {
         const headers: IHeader[] = [];
-
+        const params: IQueryParam[] = [];
         Object.getOwnPropertyNames(context.request.headers)
             .forEach((key) => {
                 headers.push({
@@ -24,10 +24,19 @@ export class RequestContextHandler implements IMiddleware {
                 });
             });
 
+        Object.getOwnPropertyNames(context.request.query)
+            .forEach(key => {
+                params.push({
+                    name: key,
+                    value: context.request.query[key]
+                });
+            });
+
         const requestContext = new RequestContextBuilder()
+            .setMethod(context.method)
             .setPath(context.request.path)
             .setHeaders(headers)
-            .setMethod(context.method)
+            .setQueryParams(params)
             .build();
 
         try {
@@ -36,16 +45,26 @@ export class RequestContextHandler implements IMiddleware {
              * And create a childContainer so that we can bind request scoped items.
              */
             const controller = this._container.getNamed(requestContext.path, requestContext.method);
-            
+
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller);
             let paramMetadata = Reflect.getOwnMetadata(MetaData.queryParam, controller);
-            
-            const method = methodMetadata.find((e) => {
+
+            const routeHandler = methodMetadata.find((e) => {
                 return `${controllerMetadata.path}${e.path}` === requestContext.path
             });
 
-            context.body = await method.target[method.key]();
+            const routeArgs = [];
+            
+            paramMetadata.forEach(paramDecorator => {
+                const paramMatch = requestContext.params.find(param => {
+                    return paramDecorator.name === param.name;
+                });
+
+                routeArgs.push(paramMatch.value);
+            });
+
+            context.body = await routeHandler.target[routeHandler.key](...routeArgs);
         } catch (e) {
             console.log(e);
         }

@@ -1,4 +1,4 @@
-import { IRequestContext, IHeader } from '@napi/common';
+import { IRequestContext, IHeader, IQueryParam } from '@napi/common';
 
 export class RequestContextBuilder {
     private _requestContext: IRequestContext;
@@ -54,7 +54,22 @@ export class RequestContextBuilder {
     setMethod(method: string) {
         this._requestContext.method = method;
         return this;
-    };
+    }
+
+    setQueryParams(queryParams: IQueryParam[]) {
+        this._requestContext.params = queryParams;
+        return this;
+    }
+
+    addQueryParam(queryParam: IQueryParam) {
+        this._requestContext.params.push(queryParam);
+        return this;
+    }
+
+    addQueryParams(queryParams: IQueryParam[]) {
+        this._requestContext.params.push(queryParams);
+        return this;
+    }
 
     build(): IRequestContext {
         return this._requestContext;
