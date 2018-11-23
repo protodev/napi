@@ -3,9 +3,7 @@ import {
     get, post, put, del, options, queryParam, pathVariable,
     requestBody
 } from 'napi-server';
-import { injectable } from '../../node_modules/inversify';
 
-@injectable()
 @controller('/sample')
 export class SampleController implements IController {
     static Public_Response = {
