@@ -1,5 +1,6 @@
 import 'reflect-metadata';
 import * as Koa from 'koa';
+import * as PathToRegex from 'path-to-regexp';
 import { Container } from 'inversify';
 import { IServerInstance } from "../abstraction/server/iServer";
 import { IRouteManager } from '../abstraction/router/iRouteManager';
@@ -14,6 +15,7 @@ import { IController } from '../abstraction/iController';
 import { MetaData } from '../abstraction/constants/metaData';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
 import { RequestContextHandler } from '../middleware/requestContextHandler';
+import pathToRegexp = require('path-to-regexp');
 
 export class Server implements IServerInstance {
     private _container: Container;
@@ -59,13 +61,19 @@ export class Server implements IServerInstance {
         controllers.forEach((controller: IController) => {
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller.constructor);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller.constructor);
+            const parsedRoutes = [];
 
             methodMetadata.forEach((metadata) => {
-                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler.`)
-                this._container.bind(`${controllerMetadata.path}${metadata.path}`)
+                const parsedRoute = PathToRegex(`${controllerMetadata.path}${metadata.path}`);
+                this._container.bind(parsedRoute.source)
                     .toConstantValue(controller.constructor)
                     .whenTargetNamed(`${metadata.method}`);
+                parsedRoutes.push(parsedRoute);
+                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler. With the following source ${parsedRoute.source}`);
             });
+
+            this._container.bind('Parsed_Routes')
+                .toConstantValue(parsedRoutes);
         });
     }
 }

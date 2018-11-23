@@ -1,6 +1,6 @@
 import {
     controller, route, IController,
-    get, post, put, del, options, queryParam
+    get, post, put, del, options, queryParam, pathVariable
 } from 'napi-server';
 import { SampleResource } from '../resources/sampleResponse';
 import { injectable } from '../../node_modules/inversify';
@@ -38,14 +38,19 @@ export class SampleController implements IController {
         return SampleController.Public_Response
     }
 
-    @get('/parameter-test')
+    @get('/parameter-test/:thing/:thing2')
     async parameterTest(
         @queryParam('sample') sample: string,
-        @queryParam('sample2') sample2: string) {
+        @queryParam('sample2') sample2: string,
+        @pathVariable('thing2') thing2: string,
+        @pathVariable('thing') thing: string
+    ) {
 
         return {
             sample,
-            sample2
+            sample2,
+            thing,
+            thing2
         }
     }
 }

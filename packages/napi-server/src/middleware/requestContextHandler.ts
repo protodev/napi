@@ -44,18 +44,42 @@ export class RequestContextHandler implements IMiddleware {
              * This is where we find and call the appropriate controller from inversify and handle the request.
              * And create a childContainer so that we can bind request scoped items.
              */
-            const controller = this._container.getNamed(requestContext.path, requestContext.method);
-
-            const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller);
-            const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller);
-            let paramMetadata = Reflect.getOwnMetadata(MetaData.queryParam, controller);
-
-            const routeHandler = methodMetadata.find((e) => {
-                return `${controllerMetadata.path}${e.path}` === requestContext.path
+            const routeArgs = [];
+            const routes = this._container.get<RegExp[]>('Parsed_Routes');
+            const matches = routes.filter((route) => {
+                return route.exec(requestContext.path);
             });
 
-            const routeArgs = [];
-            
+            const match = matches.pop();
+            const controller = this._container.getNamed(match.source, requestContext.method);
+            const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller);
+            const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller);
+
+            // NOTE: Concat to create a copy of the metadata for manipulation below.
+            const paramMetadata = Reflect.getOwnMetadata(MetaData.routeParam, controller).concat([]);
+
+            const routeHandler = methodMetadata.find((e) => {
+                const matched = match.exec(`${controllerMetadata.path}${e.path}`);
+                if (!matched) return false;
+
+                const path = matched.shift();
+                const pathParts = path.split('/');
+                const pathVariables = match.exec(requestContext.path);
+                pathVariables.shift();
+                pathVariables.reverse();
+
+                pathParts.forEach(part => {
+                    if (part.indexOf(':') !== -1) { 
+                        requestContext.params.push({
+                            name: part.replace(':', ''),
+                            value: pathVariables.pop()
+                        });
+                    }
+                });
+
+                return true;
+            });
+
             paramMetadata.reverse().forEach(paramDecorator => {
                 const paramMatch = requestContext.params.find(param => {
                     return paramDecorator.name === param.name;

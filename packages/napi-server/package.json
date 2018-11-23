@@ -24,9 +24,10 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
+    "@napi/common": "^0.0.0",
+    "@napi/utils": "^0.0.0",
     "koa": "^2.5.2",
     "koa-router": "^7.4.0",
-    "@napi/utils": "^0.0.0",
-    "@napi/common": "^0.0.0"
+    "path-to-regexp": "^2.4.0"
   }
 }

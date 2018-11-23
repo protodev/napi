@@ -11,7 +11,7 @@ import { service } from "./decorators/service";
 import { route, get, post, put, patch, del, options } from "./decorators/route";
 import { IController } from './abstraction/iController';
 import { ControllerConstants } from "./abstraction/constants/controllerConstants";
-import { queryParam } from "./decorators/requestDecorators";
+import { queryParam, pathVariable } from "./decorators/requestDecorators";
 
 const Constants = {
     ServerConstants,
@@ -30,7 +30,8 @@ const Decorators = {
     del,
     options,
     request: {
-        queryParam
+        queryParam,
+        pathVariable
     }
 }
 
@@ -57,5 +58,6 @@ export {
     patch,
     del,
     options,
-    queryParam
+    queryParam,
+    pathVariable
 }
