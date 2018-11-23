@@ -1,10 +1,9 @@
 import {
-    controller, route, IController,
-    get, post, put, del, options, queryParam, pathVariable
+    controller, IController,
+    get, post, put, del, options, queryParam, pathVariable,
+    requestBody
 } from 'napi-server';
-import { SampleResource } from '../resources/sampleResponse';
 import { injectable } from '../../node_modules/inversify';
-import { HttpVerb } from 'napi-utils';
 
 @injectable()
 @controller('/sample')
@@ -19,22 +18,28 @@ export class SampleController implements IController {
     }
 
     @post('/public')
-    async postPublicRoute() {
-        return SampleController.Public_Response
+    async postPublicRoute(@requestBody() body: Object) {
+        return {
+            verb: 'POST',
+            echo: body
+        }
     }
 
     @put('/public')
-    async putPublicRoute(context) {
-        return SampleController.Public_Response
+    async putPublicRoute(@requestBody() body: Object) {
+        return {
+            verb: 'PUT',
+            echo: body
+        }
     }
 
     @del('/public')
-    async deletePublicRoute(context) {
+    async deletePublicRoute() {
         return SampleController.Public_Response
     }
 
     @options('/public')
-    async optionsPublicRoute(context) {
+    async optionsPublicRoute() {
         return SampleController.Public_Response
     }
 
@@ -45,7 +50,6 @@ export class SampleController implements IController {
         @pathVariable('thing2') thing2: string,
         @pathVariable('thing') thing: string
     ) {
-
         return {
             sample,
             sample2,

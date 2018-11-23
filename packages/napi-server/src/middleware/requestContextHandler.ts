@@ -37,6 +37,7 @@ export class RequestContextHandler implements IMiddleware {
             .setPath(context.request.path)
             .setHeaders(headers)
             .setQueryParams(params)
+            .setBody(context.request.body)
             .build();
 
         try {
@@ -60,7 +61,7 @@ export class RequestContextHandler implements IMiddleware {
 
             const routeHandler = methodMetadata.find((e) => {
                 const matched = match.exec(`${controllerMetadata.path}${e.path}`);
-                if (!matched) return false;
+                if (!matched || e.method !== requestContext.method) return false;
 
                 const path = matched.shift();
                 const pathParts = path.split('/');
@@ -69,7 +70,7 @@ export class RequestContextHandler implements IMiddleware {
                 pathVariables.reverse();
 
                 pathParts.forEach(part => {
-                    if (part.indexOf(':') !== -1) { 
+                    if (part.indexOf(':') !== -1) {
                         requestContext.params.push({
                             name: part.replace(':', ''),
                             value: pathVariables.pop()
@@ -77,15 +78,16 @@ export class RequestContextHandler implements IMiddleware {
                     }
                 });
 
-                return true;
-            });
+                requestContext.params.push({ name: 'RequestBody', value: requestContext.body });
+                paramMetadata.filter((p) => p.key === e.key).reverse().forEach(paramDecorator => {
+                    const paramMatch = requestContext.params.find(param => {
+                        return paramDecorator.name === param.name;
+                    });
 
-            paramMetadata.reverse().forEach(paramDecorator => {
-                const paramMatch = requestContext.params.find(param => {
-                    return paramDecorator.name === param.name;
+                    paramMatch && paramMatch.value ? routeArgs.push(paramMatch.value) : null;
                 });
 
-                paramMatch && paramMatch.value ? routeArgs.push(paramMatch.value) : null;
+                return true;
             });
 
             context.body = await routeHandler.target[routeHandler.key](...routeArgs);

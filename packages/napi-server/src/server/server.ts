@@ -1,30 +1,25 @@
 import 'reflect-metadata';
 import * as Koa from 'koa';
 import * as PathToRegex from 'path-to-regexp';
+import * as BodyParser from 'koa-bodyparser';
 import { Container } from 'inversify';
 import { IServerInstance } from "../abstraction/server/iServer";
-import { IRouteManager } from '../abstraction/router/iRouteManager';
 import { IMiddleware } from 'koa-router';
 import { IServerConfiguration } from '../abstraction/server/iServerConfiguration';
 import { ServerConstants } from '../abstraction/constants/serverConstants';
-import { RouteManagerConstants } from '../abstraction/constants/routeManagerConstants';
-import { guardEmptyArray, HttpVerb } from '../../../napi-utils/dist';
+import { guardEmptyArray } from '../../../napi-utils/dist';
 import { ControllerConstants } from '../abstraction/constants/controllerConstants';
-import { controller } from '../decorators/controller';
 import { IController } from '../abstraction/iController';
 import { MetaData } from '../abstraction/constants/metaData';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
 import { RequestContextHandler } from '../middleware/requestContextHandler';
-import pathToRegexp = require('path-to-regexp');
 
 export class Server implements IServerInstance {
     private _container: Container;
-    private _routeManager: IRouteManager;
     private _serverConfiguration: IServerConfiguration;
     private _koa: Koa;
 
     constructor(container: Container) {
-        this._routeManager = container.get<IRouteManager>(RouteManagerConstants.RouteManager);
         this._serverConfiguration = container.get<IServerConfiguration>(ServerConstants.ServerConfiguration);
         this._container = container;
         this._koa = new Koa();
@@ -47,11 +42,10 @@ export class Server implements IServerInstance {
 
     start() {
         this.registerControllers();
-        const routes = this._routeManager.buildRoutes();
-
+        
+        this._koa.use(BodyParser());
         this._koa.use(new ExceptionHandler().middleware);
         this._koa.use(new RequestContextHandler(this._container).middleware);
-        this._koa.use(routes);
         this._koa.listen(this._serverConfiguration.port);
     }
 
@@ -69,7 +63,7 @@ export class Server implements IServerInstance {
                     .toConstantValue(controller.constructor)
                     .whenTargetNamed(`${metadata.method}`);
                 parsedRoutes.push(parsedRoute);
-                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler. With the following source ${parsedRoute.source}`);
+                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler.`);
             });
 
             this._container.bind('Parsed_Routes')

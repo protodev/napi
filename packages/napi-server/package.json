@@ -18,6 +18,7 @@
   "devDependencies": {
     "@types/chai": "^4.1.4",
     "@types/koa": "^2.0.46",
+    "@types/koa-bodyparser": "^5.0.2",
     "@types/koa-router": "^7.0.31",
     "@types/mocha": "^5.2.5",
     "chai": "^4.1.2",
@@ -27,6 +28,7 @@
     "@napi/common": "^0.0.0",
     "@napi/utils": "^0.0.0",
     "koa": "^2.5.2",
+    "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
     "path-to-regexp": "^2.4.0"
   }

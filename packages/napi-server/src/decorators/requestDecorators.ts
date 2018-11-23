@@ -2,7 +2,8 @@ import { MetaData } from "../abstraction/constants/metaData";
 
 export enum RequestDecoratorTypes {
     PathVariable = 'PathVariable',
-    QueryParam = 'QueryParam'
+    QueryParam = 'QueryParam',
+    RequestBody = 'RequestBody'
 }
 
 export function queryParam(name: string) {
@@ -11,6 +12,10 @@ export function queryParam(name: string) {
 
 export function pathVariable(name: string) {
     return requestVariable(name, RequestDecoratorTypes.PathVariable);
+}
+
+export function requestBody() {
+    return requestVariable('RequestBody', RequestDecoratorTypes.RequestBody);
 }
 
 export function requestVariable(name: string, type: RequestDecoratorTypes) {
