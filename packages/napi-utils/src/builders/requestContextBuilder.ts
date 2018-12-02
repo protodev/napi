@@ -1,4 +1,4 @@
-import { IRequestContext, IHeader, IQueryParam } from '@napi/common';
+import { IRequestContext, IHeader, IQueryParam } from '@protodev/napi-common';
 
 export class RequestContextBuilder {
     private _requestContext: IRequestContext;

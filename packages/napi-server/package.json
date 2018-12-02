@@ -1,5 +1,5 @@
 {
-  "name": "@napi/server",
+  "name": "@protodev/napi-server",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",
@@ -25,8 +25,8 @@
     "mocha": "^5.2.0"
   },
   "dependencies": {
-    "@napi/common": "^0.0.0",
-    "@napi/utils": "^0.0.0",
+    "@protodev/napi-common": "^0.0.0",
+    "@protodev/napi-utils": "^0.0.0",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",

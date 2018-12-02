@@ -1,4 +1,4 @@
-import { NotFoundException } from '@napi/common';
+import { NotFoundException } from '@protodev/napi-common';
 import { IMiddleware } from "../abstraction/router/iMiddleware";
 import { Context } from "koa";
 

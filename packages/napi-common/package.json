@@ -1,5 +1,5 @@
 {
-  "name": "@napi/common",
+  "name": "@protodev/napi-common",
   "version": "0.0.0",
   "description": "",
   "main": "dist/index.js",

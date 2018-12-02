@@ -1,4 +1,4 @@
-import { HttpVerb } from '@napi/utils';
+import { HttpVerb } from '@protodev/napi-utils';
 import { MetaData } from '../abstraction/constants/metaData';
 import { IMiddleware } from 'koa-router';
 

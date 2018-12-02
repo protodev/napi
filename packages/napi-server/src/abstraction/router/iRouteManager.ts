@@ -1,5 +1,5 @@
 import { IMiddleware } from 'koa-router';
-import { HttpVerb } from '@napi/utils';
+import { HttpVerb } from '@protodev/napi-utils';
 
 export interface IRouteManager {
     addPublicRoute(verb?: HttpVerb, paths?: string[], ...middlewares: IMiddleware[]): void;

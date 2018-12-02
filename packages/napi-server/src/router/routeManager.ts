@@ -1,5 +1,5 @@
 import * as Router from 'koa-router';
-import { HttpVerb } from '@napi/utils';
+import { HttpVerb } from '@protodev/napi-utils';
 import { injectable, inject } from 'inversify';
 import { IRouteManager } from '../abstraction/router/iRouteManager';
 import { IRouteManagerConfiguration } from '../abstraction/router/iRouteManagerConfiguration';

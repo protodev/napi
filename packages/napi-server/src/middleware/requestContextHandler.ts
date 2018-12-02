@@ -1,5 +1,5 @@
-import { IHeader, IQueryParam } from '@napi/common';
-import { RequestContextBuilder } from '@napi/utils';
+import { IHeader, IQueryParam } from '@protodev/napi-common';
+import { RequestContextBuilder } from '@protodev/napi-utils';
 import { IMiddleware } from '../abstraction/router/iMiddleware';
 import { Context } from 'koa';
 import { Container } from 'inversify';
