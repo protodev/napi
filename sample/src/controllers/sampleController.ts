@@ -10,10 +10,15 @@ export class SampleController implements IController {
         public: 'response'
     }
 
+    @get()
+    async rootRoute() {
+        return SampleController.Public_Response
+    }
+
     @get('/public')
     async publicRoute() {
         return SampleController.Public_Response
-    }
+    }    
 
     @post('/public')
     async postPublicRoute(@requestBody() body: Object) {

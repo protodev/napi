@@ -42,7 +42,7 @@ export class Server implements IServerInstance {
 
     start() {
         this.registerControllers();
-        
+
         this._koa.use(BodyParser());
         this._koa.use(new ExceptionHandler().middleware);
         this._koa.use(new RequestContextHandler(this._container).middleware);
@@ -58,12 +58,13 @@ export class Server implements IServerInstance {
             const parsedRoutes = [];
 
             methodMetadata.forEach((metadata) => {
-                const parsedRoute = PathToRegex(`${controllerMetadata.path}${metadata.path}`);
+                const route = `${controllerMetadata.path ? controllerMetadata.path : ''}${metadata.path ? metadata.path : ''}`;
+                const parsedRoute = PathToRegex(route);
                 this._container.bind(parsedRoute.source)
                     .toConstantValue(controller.constructor)
                     .whenTargetNamed(`${metadata.method}`);
                 parsedRoutes.push(parsedRoute);
-                console.log(`Adding ${metadata.method}: ${controllerMetadata.path}${metadata.path} handler.`);
+                console.log(`Adding ${metadata.method}: ${route} handler.`);
             });
 
             this._container.bind('Parsed_Routes')
