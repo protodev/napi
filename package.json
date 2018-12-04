@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf ./node_modules && lerna run clean",
     "test": "lerna run test",
-    "build": "lerna bootstrap --hoist && lerna run build"
+    "build": "lerna bootstrap --hoist && lerna run build",
+    "rebuild": "npm run clean && npm run build"
   },
   "author": {
     "name": "Protodev Technology Group LLC.",
