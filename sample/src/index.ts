@@ -1,11 +1,9 @@
 import 'reflect-metadata';
 import { Container } from 'inversify';
 import {
-    IServerInstance,
     IServerConfiguration,
     Server,
     ServerConstants,
-    IRouteManager,
     IRouteManagerConfiguration,
     RouteManager,
     RouteManagerConstants,
