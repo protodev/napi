@@ -51,11 +51,11 @@ export class Server implements IServerInstance {
 
     private registerControllers() {
         const controllers = this._container.getAll(ControllerConstants.Controller);
+        const parsedRoutes = [];
 
         controllers.forEach((controller: IController) => {
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller.constructor);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller.constructor);
-            const parsedRoutes = [];
 
             methodMetadata.forEach((metadata) => {
                 const route = `${controllerMetadata.path ? controllerMetadata.path : ''}${metadata.path ? metadata.path : ''}`;
@@ -66,9 +66,9 @@ export class Server implements IServerInstance {
                 parsedRoutes.push(parsedRoute);
                 console.log(`Adding ${metadata.method}: ${route} handler.`);
             });
-
-            this._container.bind('Parsed_Routes')
-                .toConstantValue(parsedRoutes);
         });
+
+        this._container.bind('Parsed_Routes')
+            .toConstantValue(parsedRoutes);
     }
 }

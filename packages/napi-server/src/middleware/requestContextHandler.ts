@@ -4,6 +4,7 @@ import { IMiddleware } from '../abstraction/router/iMiddleware';
 import { Context } from 'koa';
 import { Container } from 'inversify';
 import { MetaData } from '../abstraction/constants/metaData';
+import { NotFoundException } from '@protodev/napi-common';
 
 export class RequestContextHandler implements IMiddleware {
 
@@ -50,6 +51,10 @@ export class RequestContextHandler implements IMiddleware {
             const matches = routes.filter((route) => {
                 return route.exec(requestContext.path);
             });
+            
+            if(matches.length === 0) {
+                throw new NotFoundException();
+            }
 
             const match = matches.pop();
             const controller = this._container.getNamed(match.source, requestContext.method);
