@@ -7,22 +7,26 @@ import { IServerInstance } from "../abstraction/server/iServer";
 import { IMiddleware } from 'koa-router';
 import { IServerConfiguration } from '../abstraction/server/iServerConfiguration';
 import { ServerConstants } from '../abstraction/constants/serverConstants';
-import { guardEmptyArray } from '../../../napi-utils/dist';
+import { guardEmptyArray } from '@protodev/napi-utils';
 import { ControllerConstants } from '../abstraction/constants/controllerConstants';
 import { IController } from '../abstraction/iController';
 import { MetaData } from '../abstraction/constants/metaData';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
 import { RequestContextHandler } from '../middleware/requestContextHandler';
+import { Logger } from '@protodev/napi-common';
+import { LoggingMiddleware } from '../middleware/loggingMiddleware';
 
 export class Server implements IServerInstance {
     private _container: Container;
     private _serverConfiguration: IServerConfiguration;
     private _koa: Koa;
+    private _logger: Logger;
 
     constructor(container: Container) {
         this._serverConfiguration = container.get<IServerConfiguration>(ServerConstants.ServerConfiguration);
         this._container = container;
         this._koa = new Koa();
+        this._logger = new Logger({}, true);
     }
 
     middleware(middleware: IMiddleware): Server {
@@ -45,6 +49,7 @@ export class Server implements IServerInstance {
 
         this._koa.use(BodyParser());
         this._koa.use(new ExceptionHandler().middleware);
+        this._koa.use(new LoggingMiddleware().middleware);
         this._koa.use(new RequestContextHandler(this._container).middleware);
         this._koa.listen(this._serverConfiguration.port);
     }
@@ -64,7 +69,10 @@ export class Server implements IServerInstance {
                     .toConstantValue(controller.constructor)
                     .whenTargetNamed(`${metadata.method}`);
                 parsedRoutes.push(parsedRoute);
-                console.log(`Adding ${metadata.method}: ${route} handler.`);
+                console.log({
+                    className: this.constructor.name,
+                    message: `Adding ${metadata.method}: ${route} handler.`
+                });
             });
         });
 

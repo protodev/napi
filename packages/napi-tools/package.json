@@ -10,5 +10,8 @@
     "build": "tsc",
     "test": "mocha"
   },
+  "devDependencies": {
+    "typescript": "3.2.2"
+  },
   "license": "UNLICENSED"
 }

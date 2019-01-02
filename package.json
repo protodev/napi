@@ -4,9 +4,9 @@
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf ./node_modules && lerna run clean",
-    "test": "lerna run test",
-    "build": "lerna bootstrap --hoist && lerna run build",
+    "clean": "rm -rf ./node_modules && pnpm recursive run clean",
+    "test": "pnpm run test",
+    "build": "pnpm recursive install && pnpm recursive run build",
     "rebuild": "npm run clean && npm run build"
   },
   "author": {
@@ -24,8 +24,7 @@
     "ts-node": "^7.0.0"
   },
   "devDependencies": {
-    "@types/node": "^10.5.4",
-    "lerna": "^3.0.0-rc.0",
-    "typescript": "^2.9.2"
+    "@types/node": "^10.12.18",
+    "lerna": "^3.0.0-rc.0"
   }
 }

@@ -12,9 +12,15 @@
   },
   "license": "UNLICENSED",
   "devDependencies": {
-    "@types/chai": "^4.1.4",
-    "@types/mocha": "^5.2.5",
-    "chai": "^4.1.2",
-    "mocha": "^5.2.0"
+    "@types/chai": "4.1.4",
+    "@types/mocha": "5.2.5",
+    "@types/node": "10.12.18",
+    "chai": "4.1.2",
+    "mocha": "5.2.0",
+    "typescript": "3.2.2"
+  },
+  "dependencies": {
+    "logform": "^2.0.0",
+    "winston": "^3.1.0"
   }
 }

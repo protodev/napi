@@ -1,5 +1,6 @@
 export const MetaData = {
     controller: "_controller",
     route: "_route",
-    routeParam: "_routeParam"
+    routeParam: "_routeParam",
+    middleware: "_middleware"
 }

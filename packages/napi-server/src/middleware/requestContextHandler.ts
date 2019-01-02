@@ -99,7 +99,10 @@ export class RequestContextHandler implements IMiddleware {
 
             context.body = await routeHandler.target[routeHandler.key](...routeArgs);
         } catch (e) {
-            console.log(e);
+            console.log({
+                className: this.constructor.name,
+                message: e
+            });
         }
     }
 }

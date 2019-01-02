@@ -7,6 +7,7 @@ import { IHeader } from "./abstraction/iHeader";
 import { IPathVariable } from "./abstraction/request/iPathVariable";
 import { IQueryParam } from "./abstraction/request/iQueryParam";
 import { IResponseContext } from "./abstraction/response/iResponseContext";
+import { Logger } from "./logging/logger";
 
 export {
     NapiException,
@@ -17,5 +18,6 @@ export {
     IHeader,
     IPathVariable,
     IQueryParam,
-    IResponseContext
+    IResponseContext,
+    Logger
 }
