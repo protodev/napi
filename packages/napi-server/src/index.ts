@@ -1,11 +1,9 @@
 import { Server } from "./server/server";
 import { IServerConfiguration } from "./abstraction/server/iServerConfiguration";
-import { IServerInstance, IServerConstructor } from "./abstraction/server/iServer";
+import { IServerInstance } from "./abstraction/server/iServer";
 import { ServerConstants } from "./abstraction/constants/serverConstants";
-import { IRouteManager } from "./abstraction/router/iRouteManager";
 import { IRouteManagerConfiguration } from "./abstraction/router/iRouteManagerConfiguration";
 import { RouteManagerConstants } from "./abstraction/constants/routeManagerConstants";
-import { RouteManager } from "./router/routeManager";
 import { controller } from "./decorators/controller";
 import { service } from "./decorators/service";
 import { route, get, post, put, patch, del, options } from "./decorators/route";
@@ -38,12 +36,9 @@ const Decorators = {
 
 export {
     IServerInstance,
-    IServerConstructor,
     IServerConfiguration,
     Server,
-    IRouteManager,
     IRouteManagerConfiguration,
-    RouteManager,
     IController,
     Constants,
     ServerConstants,

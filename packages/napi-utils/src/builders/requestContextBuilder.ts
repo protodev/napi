@@ -42,7 +42,7 @@ export class RequestContextBuilder {
     }
 
     addHeaders(headers: IHeader[]) {
-        this._requestContext.headers.push(headers);
+        headers.forEach(h => this._requestContext.headers.push(h));
         return this;
     }
 
@@ -67,7 +67,7 @@ export class RequestContextBuilder {
     }
 
     addQueryParams(queryParams: IQueryParam[]) {
-        this._requestContext.params.push(queryParams);
+        queryParams.forEach(p => this._requestContext.params.push(p));
         return this;
     }
 
