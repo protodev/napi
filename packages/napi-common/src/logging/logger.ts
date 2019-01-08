@@ -1,13 +1,21 @@
 import * as winston from 'winston';
 
 export class Logger {
-    private _overrideConsole: boolean = false;
-    private _httpLogger;
+    private _overrideConsole: boolean;
     private _defaultLogger;
 
-    constructor(loggingConfiguration, overrideConsole?: boolean) {
+    constructor(loggingConfiguration, overrideConsole: boolean = false) {
         this._overrideConsole = overrideConsole;
-        this._defaultLogger = winston.createLogger({
+        this._defaultLogger = process.env.NODE_ENV === 'production' ?
+            this.configureProductionLogger() : this.configureLocalLogger();
+
+        if (this._overrideConsole) {
+            this.overrideConsole();
+        }
+    }
+
+    private configureLocalLogger() {
+        return winston.createLogger({
             transports: [new winston.transports.Console({
                 format: winston.format.combine(
                     winston.format.colorize(),
@@ -19,10 +27,42 @@ export class Logger {
                 )
             })]
         });
-        
-        if (this._overrideConsole) {
-            this.overrideConsole();
-        }
+    }
+
+    private configureProductionLogger() {
+        return winston.createLogger({
+            transports: [new winston.transports.Console({
+                format: winston.format.combine(
+                    winston.format.simple(),
+                    winston.format.timestamp(),
+                    winston.format.json()
+                )
+            })]
+        });
+    }
+
+    log(message?: any, ...optionalParams: any[]) {
+        winston.log('info', message, optionalParams);
+    }
+
+    info(message?: any, ...optionalParams: any[]) {
+        winston.log('info', message, optionalParams);
+    }
+
+    warn(message?: any, ...optionalParams: any[]) {
+        winston.log('warn', message, optionalParams);
+    }
+
+    error(message?: any, ...optionalParams: any[]) {
+        winston.log('error', message, optionalParams);
+    }
+
+    verbose(message?: any, ...optionalParams: any[]) {
+        winston.log('verbose', message, optionalParams);
+    }
+
+    debug(message?: any, ...optionalParams: any[]) {
+        winston.log('debug', message, optionalParams);
     }
 
     private overrideConsole() {

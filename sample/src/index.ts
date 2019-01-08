@@ -4,9 +4,6 @@ import {
     IServerConfiguration,
     Server,
     ServerConstants,
-    IRouteManagerConfiguration,
-    RouteManager,
-    RouteManagerConstants,
     IController,
     ControllerConstants
 } from 'napi-server';
@@ -20,10 +17,6 @@ container.bind<IServerConfiguration>(ServerConstants.ServerConfiguration).toCons
     port: 3000
 });
 
-container.bind<IRouteManagerConfiguration>(RouteManagerConstants.RouteManagerConfiguration).toConstantValue({});
-container.bind<RouteManager>(RouteManagerConstants.RouteManager)
-    .to(RouteManager)
-    .inSingletonScope();
 container.bind<IController>(ControllerConstants.Controller).to(SampleController);
 container.bind<IController>(ControllerConstants.Controller).to(HealthController);
 

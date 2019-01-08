@@ -65,7 +65,6 @@ export class RequestContextHandler implements IMiddleware {
             const paramMetadata = Array.isArray(Reflect.getOwnMetadata(MetaData.routeParam, controller)) ?
                 Reflect.getOwnMetadata(MetaData.routeParam, controller).concat([]) : [];
 
-
             const routeHandler = methodMetadata.find((e) => {
                 const matched = match.exec(`${controllerMetadata.path ? controllerMetadata.path : ''}${e.path ? e.path : ''}`);
                 if (!matched || e.method !== requestContext.method) return false;

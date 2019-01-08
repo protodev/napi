@@ -25,15 +25,30 @@ export class LoggingMiddleware implements IMiddleware {
         const headerLogParts = ['---- Headers ----', '', headersString, ''];
         const bodyLogParts = ['---- Body ----', '', bodyString, ''];
         const paramLogParts = ['---- Params ----', paramsString, ''];
+
+        if (process.env.NODE_ENV === 'production') {
+            console.log({
+                trace: traceId,
+                className: this.constructor.name,
+                message: `Request ${context.request.method} ${context.request.path}`,
+                headers: headersString,
+                params: paramsString,
+                body: bodyString
+            });
+        } else {
+            this.logMessage(`Request ${context.request.method} ${context.request.path}.\n${headerLogParts
+                .join('\n').replace(/\n\r?/g, '\n\t')}\n${paramLogParts
+                    .join('\n').replace(/\n\r?/g, '\n\t')}\n${bodyLogParts
+                        .join('\n').replace(/\n\r?/g, '\n\t')}`, traceId);
+        }
+    }
+
+    private logMessage(message: string, traceId: string) {
         console.log({
             trace: traceId,
             className: this.constructor.name,
-            message: `Request ${context.request.method} ${context.request.path}.\n${headerLogParts.join('\n').replace(/\n\r?/g, '\n\t')}\n${paramLogParts.join('\n').replace(/\n\r?/g, '\n\t')}\n${bodyLogParts.join('\n').replace(/\n\r?/g, '\n\t')}`
+            message: message
         });
-    }
-
-    private logResponseTime(recievedTime: Date) {
-
     }
 
     private applySluethHeaders(context: Context) {
