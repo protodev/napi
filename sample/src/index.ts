@@ -17,6 +17,7 @@ container.bind<IServerConfiguration>(ServerConstants.ServerConfiguration).toCons
     port: 3000
 });
 
+container.bind('text').toConstantValue('injected text');
 container.bind<IController>(ControllerConstants.Controller).to(SampleController);
 container.bind<IController>(ControllerConstants.Controller).to(HealthController);
 

@@ -57,7 +57,7 @@ export class RequestContextHandler implements IMiddleware {
             }
 
             const match = matches.pop();
-            const controller = this._container.getNamed(match.source, requestContext.method);
+            const controller: any = this._container.getNamed(match.source, requestContext.method);
             const controllerMetadata = Reflect.getOwnMetadata(MetaData.controller, controller);
             const methodMetadata = Reflect.getOwnMetadata(MetaData.route, controller);
 
@@ -95,8 +95,9 @@ export class RequestContextHandler implements IMiddleware {
 
                 return true;
             });
-
-            context.body = await routeHandler.target[routeHandler.key](...routeArgs);
+            
+            context.body = await this._container.resolve(controller)[routeHandler.key](...routeArgs)
+            return;
         } catch (e) {
             console.log({
                 className: this.constructor.name,
