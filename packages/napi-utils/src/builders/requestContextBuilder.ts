@@ -9,6 +9,8 @@ export class RequestContextBuilder {
             method: null,
             host: null,
             port: null,
+            href: null,
+            etag: null,
             params: [],
             variables: [],
             headers: [],
@@ -58,6 +60,16 @@ export class RequestContextBuilder {
 
     setQueryParams(queryParams: IQueryParam[]) {
         this._requestContext.params = queryParams;
+        return this;
+    }
+
+    setEtag(etag: string) {
+        this._requestContext.etag = etag;
+        return this;
+    }
+
+    setHref(href: string) {
+        this._requestContext.href = href;
         return this;
     }
 

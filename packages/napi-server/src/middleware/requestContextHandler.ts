@@ -1,10 +1,10 @@
-import { IHeader, IQueryParam } from '@protodev/napi-common';
+import { IHeader, IQueryParam, IRequestContext } from '@protodev/napi-common';
 import { RequestContextBuilder } from '@protodev/napi-utils';
 import { IMiddleware } from '../abstraction/router/iMiddleware';
 import { Context } from 'koa';
 import { Container } from 'inversify';
 import { MetaData } from '../abstraction/constants/metaData';
-import { NotFoundException } from '@protodev/napi-common';
+import { NotFoundException, RequestSymbols } from '@protodev/napi-common';
 
 export class RequestContextHandler implements IMiddleware {
 
@@ -33,13 +33,23 @@ export class RequestContextHandler implements IMiddleware {
                 });
             });
 
+        const fullHost = context.request.host.split(':');
+        const port = context.request.host && fullHost.length > 1 ? fullHost[1] : null;
+
         const requestContext = new RequestContextBuilder()
             .setMethod(context.method)
             .setPath(context.request.path)
+            .setHost(fullHost[0])
+            .setPort(Number.parseInt(port))
             .setHeaders(headers)
+            .setEtag(context.etag)
+            .setHref(context.request.href)
             .setQueryParams(params)
             .setBody(context.request.body)
             .build();
+
+        const requestContainer = this._container.createChild({ defaultScope: "Request" });
+        requestContainer.bind(RequestSymbols.RequestContext).toConstantValue(requestContext);
 
         try {
             /*
@@ -51,8 +61,8 @@ export class RequestContextHandler implements IMiddleware {
             const matches = routes.filter((route) => {
                 return route.exec(requestContext.path);
             });
-            
-            if(matches.length === 0) {
+
+            if (matches.length === 0) {
                 throw new NotFoundException();
             }
 
@@ -95,9 +105,8 @@ export class RequestContextHandler implements IMiddleware {
 
                 return true;
             });
-            
-            context.body = await this._container.resolve(controller)[routeHandler.key](...routeArgs)
-            return;
+
+            context.body = await requestContainer.resolve(controller)[routeHandler.key](...routeArgs);
         } catch (e) {
             console.log({
                 className: this.constructor.name,

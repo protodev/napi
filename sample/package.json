@@ -12,8 +12,8 @@
     "build-napi": "cd .. && npm run build",
     "prebuild": "npm run build-napi && rm -Rf dist",
     "build": "npm run link && tsc",
-    "prelink": "cd ./node_modules && rm -rf ./napi-server && rm -rf napi-utils",
-    "link": "cd ./node_modules && ln -sf ../../packages/napi-server && ln -sf ../../packages/napi-utils"
+    "prelink": "cd ./node_modules && rm -rf ./napi-server && rm -rf napi-utils && rm -rf napi-common",
+    "link": "cd ./node_modules && ln -sf ../../packages/napi-server && ln -sf ../../packages/napi-utils && ln -sf ../../packages/napi-common"
   },
   "author": "",
   "license": "UNLICENSED",
