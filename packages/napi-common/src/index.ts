@@ -1,5 +1,8 @@
 import { NotFoundException } from "./exceptions/NotFoundException";
 import { BadRequestException } from "./exceptions/BadRequestException";
+import { NotAuthorizedException } from "./exceptions/NotAuthorizedException";
+import { ForbiddenExecption } from "./exceptions/ForbiddenException";
+import { PreconditionFailedException } from "./exceptions/PreconditionFailedException";
 import { NapiException } from "./exceptions/NapiException";
 import { IRequestContext } from "./abstraction/request/iRequestContext";
 import { IHttpContext } from "./abstraction/iHttpContext";
@@ -14,6 +17,9 @@ export {
     NapiException,
     NotFoundException,
     BadRequestException,
+    NotAuthorizedException,
+    ForbiddenExecption,
+    PreconditionFailedException,
     IRequestContext,
     IHttpContext,
     IHeader,
