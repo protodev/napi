@@ -1,4 +1,4 @@
-import { ILogger } from './abstraction/ILogger';
+import { ILogger } from './abstraction/iLogger';
 import { HttpVerb } from './abstraction/http/verbs';
 import { guardEmptyArray } from './guards/guardEmptyArray';
 import { RequestContextBuilder } from './builders/requestContextBuilder';
