@@ -1,0 +1,126 @@
+---
+  0 debug pnpm:scope: 
+    selected: 5
+    total: 5
+    workspacePrefix: "/home/edwin/Development/napi"
+  1 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-client"
+    optional: false
+    script: "rm -Rf dist"
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-client"
+  2 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-common"
+    optional: false
+    script: "rm -Rf dist"
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-common"
+  3 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-tools"
+    optional: false
+    script: "rm -Rf dist"
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-tools"
+  4 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-client"
+    exitCode: 0
+    optional: false
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-client"
+  5 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-client"
+    optional: false
+    script: "tsc"
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-client"
+  6 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-tools"
+    exitCode: 0
+    optional: false
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-tools"
+  7 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-common"
+    exitCode: 0
+    optional: false
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-common"
+  8 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-tools"
+    optional: false
+    script: "tsc"
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-tools"
+  9 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-common"
+    optional: false
+    script: "tsc"
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-common"
+  10 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-client"
+    exitCode: 0
+    optional: false
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-client"
+  11 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-tools"
+    exitCode: 0
+    optional: false
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-tools"
+  12 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-common"
+    exitCode: 0
+    optional: false
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-common"
+  13 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-utils"
+    optional: false
+    script: "rm -Rf dist"
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-utils"
+  14 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-utils"
+    exitCode: 0
+    optional: false
+    stage: "prebuild"
+    wd: "/home/edwin/Development/napi/packages/napi-utils"
+  15 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-utils"
+    optional: false
+    script: "tsc"
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-utils"
+  16 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-utils"
+    line: "src/index.ts(1,25): error TS2307: Cannot find module './abstraction/ILogger'."
+    stage: "build"
+    stdio: "stdout"
+    wd: "/home/edwin/Development/napi/packages/napi-utils"
+  17 debug pnpm:lifecycle: 
+    depPath: "/home/edwin/Development/napi/packages/napi-utils"
+    exitCode: 2
+    optional: false
+    stage: "build"
+    wd: "/home/edwin/Development/napi/packages/napi-utils"
+  18 info pnpm: 
+    err: 
+      name: "Error"
+      message: "undefined build: `tsc`\nExit status 2"
+      code: "ELIFECYCLE"
+      stack: "Error: undefined build: `tsc`\nExit status 2\n    at EventEmitter.<anonymous> (/usr/local/lib/node_modules/pnpm/lib/node_modules/@zkochan/npm-lifecycle/index.js:303:16)\n    at emitTwo (events.js:126:13)\n    at EventEmitter.emit (events.js:214:7)\n    at ChildProcess.<anonymous> (/usr/local/lib/node_modules/pnpm/lib/node_modules/@zkochan/npm-lifecycle/lib/spawn.js:55:14)\n    at emitTwo (events.js:126:13)\n    at ChildProcess.emit (events.js:214:7)\n    at maybeClose (internal/child_process.js:925:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)"
+  19 error pnpm: 
+    message: 
+      errno: 2
+      code: "ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL"
+      stage: "build"
+      script: "tsc"
+      pkgname: "@protodev/napi-utils"
+      prefix: "/home/edwin/Development/napi/packages/napi-utils"
+    err: 
+      name: "Error"
+      message: "undefined build: `tsc`\nExit status 2"
+      code: "ERR_PNPM_RECURSIVE_RUN_FIRST_FAIL"
+      stack: "Error: undefined build: `tsc`\nExit status 2\n    at EventEmitter.<anonymous> (/usr/local/lib/node_modules/pnpm/lib/node_modules/@zkochan/npm-lifecycle/index.js:303:16)\n    at emitTwo (events.js:126:13)\n    at EventEmitter.emit (events.js:214:7)\n    at ChildProcess.<anonymous> (/usr/local/lib/node_modules/pnpm/lib/node_modules/@zkochan/npm-lifecycle/lib/spawn.js:55:14)\n    at emitTwo (events.js:126:13)\n    at ChildProcess.emit (events.js:214:7)\n    at maybeClose (internal/child_process.js:925:16)\n    at Process.ChildProcess._handle.onexit (internal/child_process.js:209:5)"
