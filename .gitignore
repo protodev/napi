@@ -2,3 +2,6 @@
 node_modules
 dist
 shrinkwrap.yaml
+pnpm-debug.log
+npm-debug.log
+lerna-debug.log
