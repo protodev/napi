@@ -4,12 +4,10 @@ import { IServerInstance } from "./abstraction/server/iServer";
 import { ServerConstants } from "./abstraction/constants/serverConstants";
 import { IRouteManagerConfiguration } from "./abstraction/router/iRouteManagerConfiguration";
 import { RouteManagerConstants } from "./abstraction/constants/routeManagerConstants";
-import { ControllerConstants } from "./abstraction/constants/controllerConstants";
 
 const Constants = {
     ServerConstants,
-    RouteManagerConstants,
-    ControllerConstants
+    RouteManagerConstants
 }
 
 
@@ -21,6 +19,5 @@ export {
     IRouteManagerConfiguration,
     Constants,
     ServerConstants,
-    RouteManagerConstants,
-    ControllerConstants
+    RouteManagerConstants
 }

@@ -19,6 +19,7 @@ import { route, get, post, put, patch, del, options } from "./decorators/route";
 import { queryParam, pathVariable, requestBody } from "./decorators/requestDecorators";
 import { MetaData } from './abstraction/constants/metaData';
 import { IController } from './abstraction/iController';
+import { ControllerConstants } from './abstraction/constants/controllerConstants';
 
 const Decorators = {
     controller,
@@ -67,5 +68,6 @@ export {
     queryParam,
     pathVariable,
     requestBody,
-    MetaData
+    MetaData,
+    ControllerConstants
 }

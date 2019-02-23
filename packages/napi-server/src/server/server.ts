@@ -8,11 +8,10 @@ import { IMiddleware } from 'koa-router';
 import { IServerConfiguration } from '../abstraction/server/iServerConfiguration';
 import { ServerConstants } from '../abstraction/constants/serverConstants';
 import { guardEmptyArray } from '@protodev/napi-utils';
-import { ControllerConstants } from '../abstraction/constants/controllerConstants';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
 import { RequestContextHandler } from '../middleware/requestContextHandler';
 import { LoggingMiddleware } from '../middleware/loggingMiddleware';
-import { Logger, MetaData, IController } from '@protodev/napi-common';
+import { Logger, MetaData, IController, ControllerConstants } from '@protodev/napi-common';
 
 export class Server implements IServerInstance {
     private _container: Container;

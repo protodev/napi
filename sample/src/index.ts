@@ -3,11 +3,11 @@ import { Container } from 'inversify';
 import {
     IServerConfiguration,
     Server,
-    ServerConstants,
-    ControllerConstants
+    ServerConstants
 } from 'napi-server';
 import {
-    IController
+    IController,
+    ControllerConstants
 } from 'napi-common';
 import { SampleController } from './controllers/sampleController';
 import { HealthController } from './controllers/healthController';
