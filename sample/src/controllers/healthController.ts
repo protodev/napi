@@ -1,5 +1,5 @@
 import { inject } from 'inversify';
-import { IController, controller, get } from 'napi-server';
+import { IController, controller, get } from 'napi-common';
 
 @controller('/health')
 export class HealthController implements IController {

@@ -1,32 +1,31 @@
-import { HttpVerb } from '@protodev/napi-utils';
+import { HttpVerb } from '../abstraction/http/verbs';
 import { MetaData } from '../abstraction/constants/metaData';
-import { IMiddleware } from 'koa-router';
 
-export function get(path: string = '', ...middleware: IMiddleware[]) {
+export function get(path: string = '', ...middleware) {
     return this.route(HttpVerb.Get, path, ...middleware);
 }
 
-export function post(path: string = '', ...middleware: IMiddleware[]) {
+export function post(path: string = '', ...middleware) {
     return this.route(HttpVerb.Post, path, ...middleware);
 }
 
-export function put(path: string = '', ...middleware: IMiddleware[]) {
+export function put(path: string = '', ...middleware) {
     return this.route(HttpVerb.Put, path, ...middleware);
 }
 
-export function patch(path: string = '', ...middleware: IMiddleware[]) {
+export function patch(path: string = '', ...middleware) {
     return this.route(HttpVerb.Patch, path, ...middleware);
 }
 
-export function del(path: string = '', ...middleware: IMiddleware[]) {
+export function del(path: string = '', ...middleware) {
     return this.route(HttpVerb.Delete, path, ...middleware);
 }
 
-export function options(path: string = '', ...middleware: IMiddleware[]) {
+export function options(path: string = '', ...middleware) {
     return this.route(HttpVerb.Options, path, ...middleware);
 }
 
-export function route(method: HttpVerb, path?: string, ...middleware: IMiddleware[]) {
+export function route(method: HttpVerb, path?: string, ...middleware) {
     return function (target: any, key: string, value: any) {
         let metaData = { path, middleware, method, target, key };
         let metaDataList = [];

@@ -5,8 +5,8 @@ import { ForbiddenExecption } from "./exceptions/ForbiddenException";
 import { PreconditionFailedException } from "./exceptions/PreconditionFailedException";
 import { NapiException } from "./exceptions/NapiException";
 import { IRequestContext } from "./abstraction/request/iRequestContext";
-import { IHttpContext } from "./abstraction/iHttpContext";
-import { IHeader } from "./abstraction/iHeader";
+import { IHttpContext } from "./abstraction/http/iHttpContext";
+import { IHeader } from "./abstraction/http/iHeader";
 import { IPathVariable } from "./abstraction/request/iPathVariable";
 import { IQueryParam } from "./abstraction/request/iQueryParam";
 import { IResponseContext } from "./abstraction/response/iResponseContext";
@@ -17,6 +17,8 @@ import { controller } from "./decorators/controller";
 import { service } from "./decorators/service";
 import { route, get, post, put, patch, del, options } from "./decorators/route";
 import { queryParam, pathVariable, requestBody } from "./decorators/requestDecorators";
+import { MetaData } from './abstraction/constants/metaData';
+import { IController } from './abstraction/iController';
 
 const Decorators = {
     controller,
@@ -49,6 +51,7 @@ export {
     IPathVariable,
     IQueryParam,
     IResponseContext,
+    IController,
     Logger,
     RequestSymbols,
     Decorators,
@@ -63,5 +66,6 @@ export {
     options,
     queryParam,
     pathVariable,
-    requestBody
+    requestBody,
+    MetaData
 }

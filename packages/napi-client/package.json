@@ -1,6 +1,6 @@
 {
   "name": "@protodev/napi-client",
-  "version": "0.0.1-alpha.13",
+  "version": "0.0.1-alpha.14",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -18,7 +18,7 @@
   },
   "license": "UNLICENSED",
   "dependencies": {
-    "@protodev/napi-common": "0.0.1-alpha.13",
+    "@protodev/napi-common": "0.0.1-alpha.14",
     "axios": "0.18.0",
     "lodash": "4.17.11"
   }

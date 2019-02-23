@@ -4,7 +4,7 @@
   "version": "0.0.0",
   "main": "dist/index.js",
   "scripts": {
-    "clean": "rm -rf ./node_modules && pnpm recursive run clean",
+    "clean": "rm -rf ./node_modules && npm install && pnpm recursive run clean",
     "test": "pnpm run test",
     "build": "pnpm recursive install && pnpm recursive run build",
     "rebuild": "npm run clean && npm run build"

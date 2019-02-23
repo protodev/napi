@@ -1,6 +1,6 @@
 import { IQueryParam } from "./iQueryParam";
 import { IPathVariable } from "./iPathVariable";
-import { IHttpContext } from "../iHttpContext";
+import { IHttpContext } from "../http/iHttpContext";
 
 export interface IRequestContext extends IHttpContext {
     params: IQueryParam[];

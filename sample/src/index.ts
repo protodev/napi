@@ -4,9 +4,11 @@ import {
     IServerConfiguration,
     Server,
     ServerConstants,
-    IController,
     ControllerConstants
 } from 'napi-server';
+import {
+    IController
+} from 'napi-common';
 import { SampleController } from './controllers/sampleController';
 import { HealthController } from './controllers/healthController';
 

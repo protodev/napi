@@ -2,9 +2,7 @@ import { inject, optional } from 'inversify';
 import {
     controller, IController,
     get, post, put, del, options, queryParam, pathVariable,
-    requestBody
-} from 'napi-server';
-import {
+    requestBody,
     RequestSymbols,
     IRequestContext,
     NotAuthorizedException,

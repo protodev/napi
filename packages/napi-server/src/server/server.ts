@@ -9,12 +9,10 @@ import { IServerConfiguration } from '../abstraction/server/iServerConfiguration
 import { ServerConstants } from '../abstraction/constants/serverConstants';
 import { guardEmptyArray } from '@protodev/napi-utils';
 import { ControllerConstants } from '../abstraction/constants/controllerConstants';
-import { IController } from '../abstraction/iController';
-import { MetaData } from '../abstraction/constants/metaData';
 import { ExceptionHandler } from '../middleware/exceptionHandler';
 import { RequestContextHandler } from '../middleware/requestContextHandler';
-import { Logger } from '@protodev/napi-common';
 import { LoggingMiddleware } from '../middleware/loggingMiddleware';
+import { Logger, MetaData, IController } from '@protodev/napi-common';
 
 export class Server implements IServerInstance {
     private _container: Container;

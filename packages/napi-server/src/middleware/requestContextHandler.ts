@@ -3,8 +3,7 @@ import { RequestContextBuilder } from '@protodev/napi-utils';
 import { IMiddleware } from '../abstraction/router/iMiddleware';
 import { Context } from 'koa';
 import { Container } from 'inversify';
-import { MetaData } from '../abstraction/constants/metaData';
-import { NotFoundException, RequestSymbols } from '@protodev/napi-common';
+import { NotFoundException, RequestSymbols, MetaData } from '@protodev/napi-common';
 
 export class RequestContextHandler implements IMiddleware {
 
