@@ -1,4 +1,5 @@
-import { NotFoundException } from '@protodev/napi-common';
+import * as _ from 'lodash';
+import { NotFoundException, NapiException } from '@protodev/napi-common';
 import { IMiddleware } from "../abstraction/router/iMiddleware";
 import { Context } from "koa";
 
@@ -9,9 +10,9 @@ export class ExceptionHandler implements IMiddleware {
             if (context.status === 404) throw new NotFoundException();
         } catch (exception) {
             context.status = exception.status || 500;
-            context.body = {
-                message: exception.message
-            }
+            context.type = _.isEmpty(_.trim(context.type)) ? 'application/json': context.type;
+            context.body = exception instanceof NapiException ?
+                JSON.stringify(exception) : { message: exception.message }
         }
     }
 }

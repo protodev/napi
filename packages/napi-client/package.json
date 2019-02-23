@@ -1,6 +1,6 @@
 {
   "name": "@protodev/napi-client",
-  "version": "0.0.1-alpha.7",
+  "version": "0.0.1-alpha.13",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -11,8 +11,15 @@
     "test": "mocha"
   },
   "devDependencies": {
-    "@types/node": "^10.12.18",
+    "@types/axios": "0.14.0",
+    "@types/lodash": "4.14.121",
+    "@types/node": "10.12.18",
     "typescript": "3.2.2"
   },
-  "license": "UNLICENSED"
+  "license": "UNLICENSED",
+  "dependencies": {
+    "@protodev/napi-common": "0.0.1-alpha.13",
+    "axios": "0.18.0",
+    "lodash": "4.17.11"
+  }
 }

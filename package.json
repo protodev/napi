@@ -18,13 +18,12 @@
   "description": "",
   "dependencies": {
     "inversify": "4.13.0",
-    "node": "^10.7.0",
+    "node": "10.7.0",
     "reflect-metadata": "0.1.12",
-    "source-map-support": "^0.5.6",
-    "ts-node": "^7.0.0"
+    "source-map-support": "0.5.6",
+    "ts-node": "7.0.0"
   },
   "devDependencies": {
-    "@types/node": "^10.12.18",
-    "lerna": "^3.0.0-rc.0"
+    "@types/node": "10.12.18"
   }
 }

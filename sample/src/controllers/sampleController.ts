@@ -6,7 +6,9 @@ import {
 } from 'napi-server';
 import {
     RequestSymbols,
-    IRequestContext
+    IRequestContext,
+    NotAuthorizedException,
+    ValidationException
 } from 'napi-common';
 
 @controller('/sample')
@@ -55,12 +57,19 @@ export class SampleController implements IController {
 
     @del('/public')
     async deletePublicRoute() {
-        return SampleController.Public_Response
+        throw new NotAuthorizedException();
     }
 
     @options('/public')
     async optionsPublicRoute() {
         return SampleController.Public_Response
+    }
+
+    @get('/exception')
+    async throwException() {
+        const exception =
+            new ValidationException('sample exception', []);
+        throw exception;
     }
 
     @get('/parameter-test/:thing/:thing2')
