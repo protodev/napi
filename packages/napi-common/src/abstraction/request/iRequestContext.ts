@@ -3,6 +3,6 @@ import { IPathVariable } from "./iPathVariable";
 import { IHttpContext } from "../http/iHttpContext";
 
 export interface IRequestContext extends IHttpContext {
-    params: IQueryParam[];
-    variables: IPathVariable[];
+    params?: IQueryParam[];
+    variables?: IPathVariable[];
 }

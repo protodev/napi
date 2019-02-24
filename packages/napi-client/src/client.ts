@@ -17,7 +17,7 @@ export abstract class Client {
         this.registerControllers();
     }
 
-    protected async performRequest(requestContext: IRequestContext) {
+    async performRequest(requestContext: IRequestContext) {
         const requestContainer = this._container.createChild({ defaultScope: "Request" });
         requestContainer.bind(RequestSymbols.RequestContext).toConstantValue(requestContext);
 

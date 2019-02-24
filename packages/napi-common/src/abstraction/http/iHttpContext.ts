@@ -5,8 +5,8 @@ export interface IHttpContext {
     method: string;
     host: string;
     href: string;
-    etag: string;
+    etag?: string;
     port?: number;
     body?: any;
-    headers: IHeader[],
+    headers?: IHeader[],
 }

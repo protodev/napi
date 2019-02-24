@@ -24,6 +24,8 @@
     "ts-node": "7.0.0"
   },
   "devDependencies": {
-    "@types/node": "10.12.18"
+    "@types/node": "10.12.18",
+    "mocha": "^6.0.1",
+    "typescript": "^3.3.3333"
   }
 }
