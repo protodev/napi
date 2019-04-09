@@ -1,42 +1,65 @@
 import 'mocha';
 import { expect } from 'chai';
 import { Client } from '../src/client';
-import { Container } from 'inversify';
-import { IController, controller, get, ControllerConstants } from '@protodev/napi-common';
+import { Container, inject, injectable } from 'inversify';
+import {
+    IController,
+    IService,
+    controller,
+    get,
+    ControllerConstants,
+    CrudService,
+    AbstractCrudController
+} from '@protodev/napi-common';
 
-const response = {
+class HealthResource {
     status: 'up'
-};
+}
+
+interface ITestController extends IController {
+    getHealth(): Promise<any>;
+}
+
+class TestService extends CrudService<HealthResource, null> {
+    async fetchResource(): Promise<HealthResource> {
+        return new HealthResource();
+    }
+}
 
 @controller()
-class TestController implements IController {
-    
+class TestController extends AbstractCrudController<HealthResource, null> {
+    private testService: CrudService<HealthResource, null>;
+
+    constructor(
+        @inject(TestService) testService: CrudService<HealthResource, null>) {
+        super();
+        this.testService = testService;
+    }
+
     @get('/health')
-    async getHealth() {
-        return response;
+    async fetchResource(): Promise<HealthResource> {
+        return await this.testService.fetchResource();
     }
 }
 
-class TestClient extends Client {
-    constructor(container: Container) {
-        super(container);
-    }
-}
+class TestClient extends Client {}
 
 const con = new Container();
-con.bind<IController>(ControllerConstants.Controller).to(TestController)
+con.bind<IController>(ControllerConstants.Controller).to(TestController);
+con.bind<IService>(TestService).to(TestService);
 
 describe('Client', () => {
     it('should performRequests', async () => {
-        const client = new TestClient(con);
-        const response = await client.performRequest({
+        const client = new TestClient();
+
+        const r = await client.performRequest({
             path: '/health',
             method: 'GET',
             host: 'localhost',
             href: 'http://localhost:3000/health',
             params: []
         });
-
-        expect(response).to.equal(response);
+        
+        expect(r).to.equal({});
     });
 });

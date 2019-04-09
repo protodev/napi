@@ -1,6 +1,6 @@
 {
   "name": "@protodev/napi-server",
-  "version": "0.0.1-alpha.16",
+  "version": "0.0.1-alpha.17",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -31,8 +31,8 @@
     "typescript": "3.2.2"
   },
   "dependencies": {
-    "@protodev/napi-common": "0.0.1-alpha.16",
-    "@protodev/napi-utils": "0.0.1-alpha.16",
+    "@protodev/napi-common": "0.0.1-alpha.17",
+    "@protodev/napi-utils": "0.0.1-alpha.17",
     "koa": "2.5.2",
     "koa-bodyparser": "4.2.1",
     "koa-router": "7.4.0",

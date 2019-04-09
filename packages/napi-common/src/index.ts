@@ -19,8 +19,12 @@ import { route, get, post, put, patch, del, options } from "./decorators/route";
 import { queryParam, pathVariable, requestBody } from "./decorators/requestDecorators";
 import { MetaData } from './abstraction/constants/metaData';
 import { IController } from './abstraction/iController';
+import { IService } from './abstraction/iService';
 import { ControllerConstants } from './abstraction/constants/controllerConstants';
 import { HttpVerb } from './abstraction/http/verbs';
+import { ServiceConstants } from "./abstraction/constants/serviceConstants";
+import { AbstractCrudController } from "./abstraction/abstractCrudController";
+import { CrudService } from "./abstraction/crudService";
 
 const Decorators = {
     controller,
@@ -54,6 +58,7 @@ export {
     IQueryParam,
     IResponseContext,
     IController,
+    IService,
     Logger,
     RequestSymbols,
     Decorators,
@@ -71,5 +76,8 @@ export {
     requestBody,
     MetaData,
     ControllerConstants,
-    HttpVerb
+    ServiceConstants,
+    HttpVerb,
+    AbstractCrudController,
+    CrudService
 }
