@@ -1,0 +1,26 @@
+{
+  "name": "@protodev/napi-sam",
+  "version": "0.0.1-alpha.17",
+  "description": "",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "clean": "rm -Rf dist && rm -Rf node_modules",
+    "prebuild": "rm -Rf dist",
+    "build": "tsc",
+    "test": "mocha"
+  },
+  "author": "",
+  "license": "UNLICENSED",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "mocha": "5.2.0",
+    "typescript": "3.2.2"
+  },
+  "dependencies": {
+    "claudia-api-builder": "^4.1.2",
+    "inversify": "4.13.0",
+    "reflect-metadata": "0.1.12",
+    "@protodev/napi-common": "0.0.1-alpha.17"
+  }
+}
