@@ -24,14 +24,14 @@
     "@types/nanoid": "1.2.0",
     "@types/node": "^10.12.18",
     "chai": "4.1.2",
-    "inversify": "4.13.0",
     "mocha": "5.2.0",
-    "reflect-metadata": "0.1.12",
     "typescript": "3.2.2"
   },
   "dependencies": {
-    "@protodev/napi-common": "^0.0.1-alpha.3",
-    "@protodev/napi-utils": "^0.0.1-alpha.3",
+    "@protodev/napi-common": "^0.0.1-alpha.7",
+    "@protodev/napi-utils": "^0.0.1-alpha.7",
+    "inversify": "4.13.0",
+    "reflect-metadata": "0.1.12",
     "koa": "^2.5.2",
     "koa-bodyparser": "^4.2.1",
     "koa-router": "^7.4.0",
