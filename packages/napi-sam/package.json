@@ -1,6 +1,6 @@
 {
   "name": "@protodev/napi-sam",
-  "version": "0.0.1-alpha.17",
+  "version": "0.0.1-alpha.9",
   "description": "",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -13,14 +13,18 @@
   "author": "",
   "license": "UNLICENSED",
   "devDependencies": {
+    "@types/chai": "^4.1.7",
+    "@types/mocha": "^5.2.6",
     "chai": "4.1.2",
     "mocha": "5.2.0",
     "typescript": "3.2.2"
   },
   "dependencies": {
-    "claudia-api-builder": "^4.1.2",
+    "@protodev/napi-common": "0.0.1-alpha.17",
+    "@protodev/napi-utils": "0.0.1-alpha.17",
+    "claudia-api-builder": "4.1.2",
     "inversify": "4.13.0",
     "reflect-metadata": "0.1.12",
-    "@protodev/napi-common": "0.0.1-alpha.17"
+    "path-to-regexp": "2.4.0"
   }
 }

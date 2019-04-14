@@ -1,0 +1,95 @@
+{
+    "v": 3,
+    "rawBody": "",
+    "normalizedHeaders": {},
+    "lambdaContext": {
+        "callbackWaitsForEmptyEventLoop": false,
+        "logGroupName": "/aws/lambda/staff-sam",
+        "logStreamName": "2019/04/14/[$LATEST]1d55c165fae04e13b688e05b1da946f9",
+        "functionName": "staff-sam",
+        "memoryLimitInMB": "128",
+        "functionVersion": "$LATEST",
+        "invokeid": "c86ca448-e9d8-42e6-8ec5-d6a4efd64396",
+        "awsRequestId": "c86ca448-e9d8-42e6-8ec5-d6a4efd64396",
+        "invokedFunctionArn": "arn:aws:lambda:us-east-1:187665480723:function:staff-sam:latest"
+    },
+    "proxyRequest": {
+        "resource": "/{sampleParam}",
+        "path": "/thing",
+        "httpMethod": "GET",
+        "headers": null,
+        "multiValueHeaders": null,
+        "queryStringParameters": {
+            "foo": "bar"
+        },
+        "multiValueQueryStringParameters": {
+            "foo": [
+                "bar"
+            ]
+        },
+        "pathParameters": {
+            "sampleParam": "thing"
+        },
+        "stageVariables": {
+            "lambdaVersion": "latest"
+        },
+        "requestContext": {
+            "path": "/{sampleParam}",
+            "accountId": "187665480723",
+            "resourceId": "amyssv",
+            "stage": "test-invoke-stage",
+            "domainPrefix": "testPrefix",
+            "requestId": "965d233b-5ed2-11e9-aa25-ab94c2f5607a",
+            "identity": {
+                "cognitoIdentityPoolId": null,
+                "cognitoIdentityId": null,
+                "apiKey": "test-invoke-api-key",
+                "cognitoAuthenticationType": null,
+                "userArn": "arn:aws:iam::187665480723:user/jdetri",
+                "apiKeyId": "test-invoke-api-key-id",
+                "userAgent": "aws-internal/3 aws-sdk-java/1.11.498 Linux/4.9.137-0.1.ac.218.74.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.202-b08 java/1.8.0_202",
+                "accountId": "187665480723",
+                "caller": "AIDAJMEHEY7ACEJ77NKUS",
+                "sourceIp": "test-invoke-source-ip",
+                "accessKey": "ASIASXMN37QJYJGFHDSN",
+                "cognitoAuthenticationProvider": null,
+                "user": "AIDAJMEHEY7ACEJ77NKUS"
+            },
+            "domainName": "testPrefix.testDomainName",
+            "resourcePath": "/{sampleParam}",
+            "httpMethod": "GET",
+            "extendedRequestId": "YIvz6GaaoAMFmWw=",
+            "apiId": "wsawpyq251"
+        },
+        "body": null,
+        "isBase64Encoded": false
+    },
+    "queryString": {
+        "foo": "bar"
+    },
+    "env": {
+        "lambdaVersion": "latest"
+    },
+    "headers": {},
+    "pathParams": {
+        "sampleParam": "thing"
+    },
+    "body": "",
+    "context": {
+        "method": "GET",
+        "path": "/{sampleParam}",
+        "stage": "test-invoke-stage",
+        "sourceIp": "test-invoke-source-ip",
+        "accountId": "187665480723",
+        "user": "AIDAJMEHEY7ACEJ77NKUS",
+        "userAgent": "aws-internal/3 aws-sdk-java/1.11.498 Linux/4.9.137-0.1.ac.218.74.329.metal1.x86_64 OpenJDK_64-Bit_Server_VM/25.202-b08 java/1.8.0_202",
+        "userArn": "arn:aws:iam::187665480723:user/jdetri",
+        "caller": "AIDAJMEHEY7ACEJ77NKUS",
+        "apiKey": "test-invoke-api-key",
+        "authorizerPrincipalId": null,
+        "cognitoAuthenticationProvider": null,
+        "cognitoAuthenticationType": null,
+        "cognitoIdentityId": null,
+        "cognitoIdentityPoolId": null
+    }
+}
